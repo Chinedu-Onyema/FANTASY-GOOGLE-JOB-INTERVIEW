@@ -1,1 +1,94 @@
+USING THE PANDAS LIBRARY TO CLEAN AND TRANSFORM MY DATASET
 
+# CLEANING GOOGLE FIBRE DATA
+# Importing the pandas library
+import pandas as pd
+
+# Reading the CSV file from my laptop
+google_fibre = pd.read_csv("C:\\Users\HP\Desktop\Google's Business Intelligence Course work\\goggle_fibre_appended_table_in__big_query.csv")
+
+# viewing the first 5 rows from my table
+google_fibre.head()
+
+# viewing the last 5 rows from my table
+google_fibre.tail()
+
+# checking the data types of my columns
+google_fibre.dtypes
+
+# checking the number of rows and columns in my table
+google_fibre.shape
+
+# changing the data type of the date column
+google_fibre['date_created'] = pd.to_datetime(google_fibre['date_created'])
+google_fibre.head()
+
+# Using the date created column as the index column
+google_fibre.set_index('date_created', inplace=True)
+google_fibre.head()
+
+google_fibre.tail()
+
+# replacing NaN values with 0
+google_fibre.fillna({'contacts_n': 0, 'contacts_n_1': 0, 'contacts_n_2': 0, 'contacts_n_3': 0, 'contacts_n_4': 0, 'contacts_n_5': 0, 'contacts_n_6': 0, 'contacts_n_7': 0}, inplace=True)
+google_fibre.tail()
+
+# changing the contacts columns to an integer data type
+google_fibre['contacts_n'] = google_fibre['contacts_n'].astype(int)
+google_fibre.tail()
+
+# changing the contacts columns to an integer data type
+google_fibre['contacts_n'] = google_fibre['contacts_n'].astype(int)
+google_fibre['contacts_n_1'] = google_fibre['contacts_n_1'].astype(int)
+google_fibre['contacts_n_2'] = google_fibre['contacts_n_2'].astype(int)
+google_fibre['contacts_n_3'] = google_fibre['contacts_n_3'].astype(int)
+google_fibre['contacts_n_4'] = google_fibre['contacts_n_4'].astype(int)
+google_fibre['contacts_n_5'] = google_fibre['contacts_n_5'].astype(int)
+google_fibre['contacts_n_6'] = google_fibre['contacts_n_6'].astype(int)
+google_fibre['contacts_n_7'] = google_fibre['contacts_n_7'].astype(int)
+google_fibre.head()
+google_fibre.dtypes
+
+google_fibre
+
+# Changing the values of the new type column to their actual values
+google_fibre['new_type'].replace({'type_1': 'account_management', 'type_2': 'technician_troubleshooting', 'type_3': 'scheduling', 
+                                  'type_4': 'construction', 'type_5': 'internet_and_wifi'}, inplace=True)
+google_fibre
+
+# changing the my column names
+google_fibre.rename(columns={'contacts_n':'1_contact', 'contacts_n_1':'2_contact', 
+                            'contacts_n_2':'3_contact', 'contacts_n_3':'4_contact',
+                            'contacts_n_4':'5_contact', 'contacts_n_5':'6_contact',
+                            'contacts_n_6':'7_contact', 'contacts_n_7':'8_contact',
+                            'new_type':'problem_type'}, inplace=True)
+google_fibre.head()
+
+# Bringing everthing together
+google_fibre = pd.read_csv("C:\\Users\HP\Desktop\Google's Business Intelligence Course work\\goggle_fibre_appended_table_in__big_query.csv") 
+google_fibre['date_created'] = pd.to_datetime(google_fibre['date_created'])
+google_fibre.fillna({'contacts_n': 0, 'contacts_n_1': 0, 'contacts_n_2': 0, 'contacts_n_3': 0, 'contacts_n_4': 0, 'contacts_n_5': 0, 
+                     'contacts_n_6': 0, 'contacts_n_7': 0}, inplace=True)
+google_fibre['contacts_n'] = google_fibre['contacts_n'].astype(int)
+google_fibre['contacts_n_1'] = google_fibre['contacts_n_1'].astype(int)
+google_fibre['contacts_n_2'] = google_fibre['contacts_n_2'].astype(int)
+google_fibre['contacts_n_3'] = google_fibre['contacts_n_3'].astype(int)
+google_fibre['contacts_n_4'] = google_fibre['contacts_n_4'].astype(int)
+google_fibre['contacts_n_5'] = google_fibre['contacts_n_5'].astype(int)
+google_fibre['contacts_n_6'] = google_fibre['contacts_n_6'].astype(int)
+google_fibre['contacts_n_7'] = google_fibre['contacts_n_7'].astype(int)
+google_fibre['new_type'].replace({'type_1': 'account_management', 'type_2': 'technician_troubleshooting', 'type_3': 'scheduling', 
+                                  'type_4': 'construction', 'type_5': 'internet_and_wifi'}, inplace=True)
+google_fibre.rename(columns={'contacts_n':'1_contact', 'contacts_n_1':'2_contact', 
+                            'contacts_n_2':'3_contact', 'contacts_n_3':'4_contact',
+                            'contacts_n_4':'5_contact', 'contacts_n_5':'6_contact',
+                            'contacts_n_6':'7_contact', 'contacts_n_7':'8_contact',
+                            'new_type':'problem_type'}, inplace=True)
+google_fibre.set_index('date_created', inplace=True)                                                                                                
+google_fibre
+
+# Saving my results to a CSV file in my laptop
+google_fibre.to_csv('C:\\Users\HP\Desktop\Project Building Materials\Project Building Materials (cycle) 4\\google_fibre_cleaned.csv')
+
+#Reading my saved CSV file from my laptop
+pd.read_csv('C:\\Users\HP\Desktop\Project Building Materials\Project Building Materials (cycle) 4\\google_fibre_cleaned.csv')
