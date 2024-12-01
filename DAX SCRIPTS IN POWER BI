@@ -1,0 +1,56 @@
+DAX (DATA ANALYSIS EXPRESSIONS) SCRIPTS TO CREATE EXPLICIT MEASURES FOR GOOGLE FIBRE COLUMNS
+
+February_total_contacts = CALCULATE([Total_no_of_contacts],
+    FILTER(
+        ALL('google_fibre_cleaned'),
+        FORMAT('google_fibre_cleaned'[date_created], "MMMM") = "February"
+    ))
+
+January_total_contacts = CALCULATE([Total_no_of_contacts],
+    FILTER(
+        ALL('google_fibre_cleaned'),
+        FORMAT('google_fibre_cleaned'[date_created], "MMMM") = "January"
+    ))
+
+March_total_contacts = CALCULATE([Total_no_of_contacts],
+    FILTER(
+        ALL('google_fibre_cleaned'),
+        FORMAT('google_fibre_cleaned'[date_created], "MMMM") = "March"
+    ))
+
+Market_1_total_contacts = CALCULATE([Total_no_of_contacts],
+FILTER(
+    ALL('google_fibre_cleaned'[new_market]),
+     'google_fibre_cleaned'[new_market] = "market_1"
+))
+
+Market_2_total_contacts = CALCULATE([Total_no_of_contacts],
+FILTER(
+    ALL('google_fibre_cleaned'[new_market]),
+     'google_fibre_cleaned'[new_market] = "market_2"
+))
+
+Market_3_total_contacts = CALCULATE([Total_no_of_contacts],
+FILTER(
+    ALL('google_fibre_cleaned'[new_market]),
+     'google_fibre_cleaned'[new_market] = "market_3"
+))
+
+Total_no_1_contact = SUM(google_fibre_cleaned[1_contact])
+
+Total_no_2_contact = SUM(google_fibre_cleaned[2_contact])
+
+Total_no_3_contact = SUM(google_fibre_cleaned[3_contact])
+
+Total_no_4_contact = SUM(google_fibre_cleaned[4_contact])
+
+Total_no_5_contact = SUM(google_fibre_cleaned[5_contact])
+
+Total_no_6_contact = SUM(google_fibre_cleaned[6_contact])
+
+Total_no_7_contact = SUM(google_fibre_cleaned[7_contact])
+
+Total_no_8_contact = SUM(google_fibre_cleaned[8_contact])
+
+Total_no_of_contacts = [Total_no_1_contact]+[Total_no_2_contact]+[Total_no_3_contact]+[Total_no_4_contact]+[Total_no_5_contact]+
+                       [Total_no_6_contact]+[Total_no_7_contact]+[Total_no_8_contact]
